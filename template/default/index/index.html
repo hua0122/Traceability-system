@@ -1,0 +1,117 @@
+{extend name="public/base"/}
+{block name="body"}
+<div id="myCarousel" class="carousel slide">
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="item active" style="background:#223240">
+			<img src="__IMG__/slide1.png" alt="第一张">
+		</div>
+		<div class="item" style="background:#F5E4DC;">
+			<img src="__IMG__/slide2.png" alt="第二张">
+		</div>
+		<div class="item" style="background:#DE2A2D;">
+			<img src="__IMG__/slide3.png" alt="第三张">
+		</div>
+	</div>
+	<a href="#myCarousel" data-slide="prev" class="carousel-control left">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<a href="#myCarousel" data-slide="next" class="carousel-control right">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>
+
+<div class="tab1">
+	<div class="container">
+		<div style="min-height: 300px;">
+			<form class="well form-search inputcode_back">
+				<input type="text" id="txt_code" class="input-medium search-query inputcode"  maxlength="24" placeholder="请输入16位防伪码">
+				<button type="button" class="btn btn-large btn-primary " style="font-family:'Microsoft Yahei'" onclick="cn_querycode()"><i class="icon-search icon-white"></i>码上查</button>
+			</form>
+			<div class="detail">
+
+
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.inputcode{
+		width: 300px;
+		border: 1px solid #ddd;
+		height: 35px;
+		border-radius: 5px;
+		padding-left: 10px;
+		font-size: 14px;
+		font-weight: 500;
+	}
+</style>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+	//轮播自动播放
+	$('#myCarousel').carousel({
+		//自动4秒播放
+		interval : 3000,
+	});
+
+	//设置文字垂直居中，谷歌浏览器加载图片的顺序问题，导致高度无法获取
+	$(window).load(function () {
+		$('.text').eq(0).css('margin-top', ($('.auto').eq(0).height() - $('.text').eq(0).height()) / 2 + 'px');
+	});
+	
+
+	$(window).resize(function () {
+		$('.text').eq(0).css('margin-top', ($('.auto').eq(0).height() - $('.text').eq(0).height()) / 2 + 'px');
+	});
+
+	$(window).load(function () {
+		$('.text').eq(1).css('margin-top', ($('.auto').eq(1).height() - $('.text').eq(1).height()) / 2 + 'px');
+	});
+
+	$(window).resize(function () {
+		$('.text').eq(1).css('margin-top', ($('.auto').eq(1).height() - $('.text').eq(1).height()) / 2 + 'px');
+	});
+
+	function cn_querycode(){
+	    var code = $("#txt_code").val();
+	    if(code.length!=16){
+	        $(".detail").html('<span style="color: #F00">请输入16位防伪码！</span>');
+	        return false;
+		}
+	    if(!code){
+            $(".detail").html('<span style="color: #F00">请输入正确的防伪码！</span>');
+
+	        return false;
+		}
+
+	    $.post('index/index/search',{code:code},function (data) {
+			var data = $.parseJSON(data);
+			if(data.status==1){
+				var tem = '';
+				$.each(data.data,function (i, v) {
+                    tem += '<div>您查询的防伪码是：'+v.code+'</div>\
+							<div>品名：'+v.title+'</div>\
+							<div></div>';
+                });
+
+                $(".detail").html(tem);
+
+
+			}else{
+			    //您所查询的防伪码不存在，谨防假冒!
+
+				$(".detail").html('<span style="color: #F00">'+data.msg+'</span>');
+			}
+        },"json");
+
+
+	}
+
+</script>
+{/block}
