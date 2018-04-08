@@ -3,10 +3,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" /><title>
-	中国商品信息验证中心
-</title>
-<meta name="keywords" content="中国商品信息验证中心,防伪查询,4006276315,4006637315,8007076315,china3-15,15850787315,中文防伪查询,商品防伪,防伪码查询,防伪标签,产品真假,码上查,二维码防伪,防伪验证,码上查" /><meta name="description" content="中国商品信息验证中心官方唯一查询网站,码上查,知天下门户网站" />
+<meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" />
+<title>{$title}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/responsive.css" rel="stylesheet" type="text/css" />
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="span6 hidden-phone">
                 <ul class="top-menu">
-                    <li><a href="EnglishIndex.aspx" >Change  English</a></li>
+                    <li><a href="" >Change  English</a></li>
                 </ul>
             </div>
             <div class="span6">
@@ -54,7 +54,10 @@
     <div class="container">
         <div class="row">
             <div class="spanlogo logo">
-                <a href=""><img src="images/logo.png" alt="logo" /></a>
+                <a href="__APPPATH__">
+                    <img src="__APPPATH__{$logo['picurl']}" alt="logo" />
+
+                </a>
             </div>
         </div>
     </div>
@@ -227,18 +230,15 @@
                     <div class="span9">
                         <div id="homeslider" class="flexslider" ><!--style="height:300px;"-->
                             <ul class="slides">
+                                {if $list}
+                                {volist name="list" id="item"}
                                 <li>
-                                  <img src="images/s_1.png" alt="photo" />
-                                  <h3 ><a href="#" class="query-method">与入网企业签订合法有效的手续,保证所有防伪码的真实有效性.</a></h3>
+                                  <img src="__APPPATH__{$item['picurl']}" alt="photo" />
+                                  <h3 ><a href="{$item['url']}" class="query-method">{$item['content']}</a></h3>
                                 </li>
-                                <li>
-                                  <img src="images/s_2.png" alt="photo" />
-                                    <h3><a href="#" class="query-method">系统架设在阿里云服务器集群中,更安全,更高效的为您提供查询服务</a></h3>
-                                </li>
-                                <li>
-                                  <img src="images/s_3.png" alt="photo" />
-                                    <h3><a href="#"  class="query-method">提供技术领先的,方式多样化的系统查询服务</a></h3>
-                                </li>
+                                {/volist}
+                                {/if}
+
                             </ul>
                         </div>     
                         <script type="text/javascript">
@@ -291,39 +291,32 @@
             <div class="span3">
                 <img src="images/telquery.png" alt="photo" />
                 <h3 class="query-method">电话查询</h3>
-                <p class="query-tip">
-                    使用手机(或座机)拨打4006361315、4006826315查询号码,根据语音提示依次输入将要查询的防伪编码.
-                </p>
+                <!--<p class="query-tip"></p>-->
+                {$tel_select['content']}
+
             </div>
+
             <div class="span3">
                 <img src="images/smsquery.png" alt="photo" />
                 <h3 class="query-method">短信查询</h3>
-                <p class="query-tip">
-					编缉短信内容400800#防伪编码发送至12114验证商品真伪.<br/>(由运营商收取每条0.1元/条信息费)
-                </p>
+                {$smg_select['content']}
             </div>
             <div class="span3">
                 <img src="images/qrquery.png" alt="photo" />
                 <h3 class="query-method">二维码查询</h3>
-                <p class="query-tip">
-					使用智能手机中的扫描二维码APP应用程序扫描标签标识上的二维码验证商品真伪.<br/>(需开启数据网络或WiFi环境下)
-                </p>
+                {$code_select['content']}
             </div>
             <div class="span3">
                <img src="images/weixinquery.png" alt="photo" />
                <h3 class="query-method">微信查询</h3> 
-               <p class="query-tip">
-					点击微信中的添加好友,搜索公众号 ChaFangWei 添加为好友,然后直接回复防伪编码验证商品真伪
-                </p>
+               {$wechat_select['content']}
             </div>
         </div>
 		
         <hr />
     <div class="row-fluid show-grid">
         <div class="span12 bottomtext">
-		    <p>
-			    CopyRight © 2014 中国商品信息验证中心<br/>苏ICP备11038931号
-		    </p>
+		    {$copyright['content']}
 		</div>
     </div>
 
@@ -337,20 +330,10 @@
   </ul>
   <div class="tab_content">
     <div class="tab_plan">
-     
-      
+        {$right['content']}
 
-
-      <p class="mt10">
-	  <b>投诉举报</b><br />
-      4008462315<br />
-      </p>
-      <p class="mt10">
-	  <b>服务时间</b><br />
-        8:00-22:00<br />
-      </p>
     </div>
-    <div class="tab_plan" style="display: none;"><img src="images/weixin.jpg" alt="中国产品质量云追溯平台官方微信" width="130" height="130" />
+    <div class="tab_plan" style="display: none;"><img src="__APPPATH__{$right['picurl']}" alt="中国产品质量云追溯平台官方微信" width="130" height="130" />
       <p>扫码关注公众号查询</p>
     </div>
   </div>
