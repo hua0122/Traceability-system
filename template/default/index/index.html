@@ -1,55 +1,434 @@
-{extend name="public/base"/}
 {block name="body"}
-<div id="myCarousel" class="carousel slide">
-	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-	</ol>
-	<div class="carousel-inner">
-		<div class="item active" style="background:#223240">
-			<img src="__IMG__/slide1.png" alt="第一张">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" /><title>
+	中国商品信息验证中心
+</title>
+<meta name="keywords" content="中国商品信息验证中心,防伪查询,4006276315,4006637315,8007076315,china3-15,15850787315,中文防伪查询,商品防伪,防伪码查询,防伪标签,产品真假,码上查,二维码防伪,防伪验证,码上查" /><meta name="description" content="中国商品信息验证中心官方唯一查询网站,码上查,知天下门户网站" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/google-code-prettify/prettify.js"></script> 
+    <script type="text/javascript" src="js/bootstrap.js"></script> 
+    <script type="text/javascript" src="js/superfish.js"></script> 
+    <script type="text/javascript" src="js/hoverIntent.js"></script>  
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <script type="text/javascript" src="js/jquery.flexslider.js"></script>  
+    <script type="text/javascript" src="js/jflickrfeed.min.js"></script>
+    <script type="text/javascript" src="js/main.js" charset="utf8"></script> 
+    <script src="js/jquery.method.js" type="text/javascript"></script>
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+	<script src="js/china-12365.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () { isIE_CN(); })
+    </script>
+</head>
+<body>
+<section id="top-line">
+    <div class="container">
+        <div class="row">
+            <div class="span6 hidden-phone">
+                <ul class="top-menu">
+                    <li><a href="EnglishIndex.aspx" >Change  English</a></li>
+                </ul>
+            </div>
+            <div class="span6">
+                <ul class="top-social">
+                	<!--style.css-->
+                	<li><a href="http://123.56.44.69:8080/ywymhs/wm/china315/index.do" class="ruwang">入网申请</a></li>
+                    <li><a href="http://open.china-12365.com/gov/index.html" class="gov">政府监管</a></li>
+                    <li><a href="http://www.wannengma.cn/" class="qudao">免费生码</a></li>
+                    <li><a href="http://ht.china3-15.com/" class="companylogin">入网企业</a></li>
+                    <li><a href="Page/LinkMethod.html" class="openfunction">公开接口</a></li>
+                    <li><a href="" class="scoresys ">码上查APP</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<header id="header">
+    <div class="container">
+        <div class="row">
+            <div class="spanlogo logo">
+                <a href=""><img src="images/logo.png" alt="logo" /></a>
+            </div>
+        </div>
+    </div>
+</header>
+<section id="container">
+    <div class="container">
+        <hr />
+        <div class="search_tab">
+        
+             <script type="text/javascript">
+         		//切换到相关页
+                function gopage(n) {
+                    var tag = document.getElementById("tabmenu").getElementsByTagName("li");
+                    var taglength = tag.length;
+                    for (i = 1; i <= taglength; i++) {
+                        document.getElementById("m" + i).className = "";
+                        document.getElementById("c" + i).style.display = 'none';
+                        document.getElementById("m" + i).style.background = '#f8f8f8';    
+                    }
+                    document.getElementById("m" + n).style.background="none";
+                    document.getElementById("m" + n).className = "on";
+                    document.getElementById("c" + n).style.display = '';
+                }
+                
+            </script>
+			
+			
+			<div id="tabcontent">
+        		<!--防伪码查询开始-->
+	        	<div id="c1" class="cbox">
+	        		<div class="cboxleft">
+	        			<img src="images/left_bg.png" />
+	        		</div>
+	        		<div class="cboxright">
+	        			<div>
+	        				<label>防伪码：</label><input class="cboxinput input1" id="txt_code" type="number" placeholder="在此输入需要查询的防伪码" /><br />
+	        				<button class="que" onclick="cn_querycode()">确认查询</button><button class="qing" onclick="clearvalue(1)">清空重输</button>
+
+	        			</div>
+						<div class="detail" style="margin-top:10px;">
+
+
+						</div>
+	        		</div>
+					<div class="cboxright cboxright1" id="fw_result_span" style="display:none;background:#fff">
+                        <a  onclick="closeresult(1)" style="float:right"><img src="images/close_result.png" alt="返回到查询界面" /></a>
+                        <div class="div_fw_image" style="float:left;">
+                            <table >
+                                <tr>
+                                    <td><img src="images/Repeat.png" alt="" /></td>
+                                    <td><span id="fw_result"></span><br /></td>
+                                </tr>
+                            </table>
+                         </div>
+                    </div>
+	        	</div>
+				
+	        	<!--防伪码结束-->
+	        	<!--物流查询开始-->
+	        	<!--物流查询-->
+                <div id="c2" style="display:none">
+                    <div class="cboxleft">
+	        			<img src="images/left_bg.png" />
+	        		</div>
+	        		<div class="cboxright">
+	        			<form>
+	        				<label>防&nbsp;伪&nbsp;码&nbsp;：</label><input class="cboxinput input22" type="text" placeholder="在此输入查询的物流编码" /><br />
+	        				<label>企业编号：</label><input class="cboxinput input2" type="text" placeholder="输入企业编号" /><br />
+	        				<label>查询密码：</label><input class="cboxinput input2" type="text" placeholder="输入查询密码" /><br />
+	        				<button class="que">确认查询</button><button class="qing">清空重输</button>
+
+	        			</form>
+	        		</div>
+                   
+                </div>
+
+	        	<!--物流查询结束-->
+	        	
+	        	<!--商品溯源-->
+                <div id="c3" style="display:none">
+                   <div class="cboxleft">
+	        			<img src="images/left_bg.png" />
+	        		</div>
+	        		<div class="cboxright">
+	        			<form>
+	        				<label class="shuo">溯源码：</label><input class="cboxinput input3" type="text" placeholder="在此输入标签上的溯源码" /><br />
+	        				<button class="que">确认查询</button><button class="qing">清空重输</button>
+
+	        			</form>
+	        		</div>
+                </div>
+                <!--商品溯源-->
+                    
+                <!--会员帐号-->
+                
+                <div id="c4" style="display:none;">
+                	<div class="cboxleft">
+	        			<img src="images/left_bg.png" />
+	        		</div>
+                	<div class="cboxright">
+	                    <form>
+	        				<label>会员号：</label><input class="cboxinput input44" type="text" placeholder="在此输入查询的物流编码" /><br />
+	        				<label>积分码：</label><input class="cboxinput input44" type="text" placeholder="输入企业编号" /><br />
+	        				<button class="que">确认查询</button><button class="qing">清空重输</button>
+		        		</form>
+	        		</div>
+                </div>
+                <!--会员帐号-->
+                
+                
+                <!--商品码查询-->
+                <div id="c5" style="display:none;"> 
+                	<div class="cboxleft">
+	        			<img src="images/left_bg.png" />
+	        		</div>
+	        		<div class="cboxright">
+	        			<form>
+	        				<label class="shang">商品码：</label><input class="cboxinput input5" type="text" placeholder="在此输入8到13位商标码" /><br />
+	        				<button class="que">确认查询</button><button class="qing">清空重输</button>
+
+	        			</form>
+	        		</div>
+                </div>
+                 <!--商品码查询-->
+        	</div>
+
+        
+    		<div id="tabmenu">
+                <ul>
+                    <li id="m1" class="on"><a onclick="javascript:gopage(1)"><div class="liinfo liinfobg1"><b>防伪查询</b><span>查询验证商品真伪</span></div></a></li>
+                    <li id="m2"><a onclick="javascript:gopage(2)"><div class="liinfo liinfobg2"><b>物流查询</b><span>查询企业商品物流出库信息</span></div></a></li>
+                    <li id="m3"><a onclick="javascript:gopage(3)"><div class="liinfo liinfobg3"><b>商品溯源</b><span>查询商品的溯源信息</span></div></a></li>
+                    <li id="m4"><a onclick="javascript:gopage(4)"><div class="liinfo liinfobg4"><b>积分查询</b><span>查询防伪码获得积分</span></div></a></li>
+                    <li id="m5"><a onclick="javascript:gopage(5)"><div class="liinfo liinfobg5"><b>商品码查询</b><span>查询商品信息</span></div></a></li>
+                </ul>
+            </div>
+	
+        	
+        	
+        	
+        	
+        	
+        </div>
+        
+        
+    
+          <div id="resultModal" class="modal hide fade">
+            <div class="modal-header">
+              <span>&nbsp;</span>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <!--Sidebar content-->
+                            <img id="result_ico" alt=""   />
+                        </div>
+                        <div class="span10 query-result" id="result_info"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <a class="btn" data-dismiss="modal" onclick="close_cn_model()"><i class="icon-off"></i>确定</a>
+            </div>
+          </div>
+        <hr />
+        <section class="container">
+                <!--BEGIN: latest work-->
+                <div class="row">
+                    <div class="span9">
+                        <div id="homeslider" class="flexslider" ><!--style="height:300px;"-->
+                            <ul class="slides">
+                                <li>
+                                  <img src="images/s_1.png" alt="photo" />
+                                  <h3 ><a href="#" class="query-method">与入网企业签订合法有效的手续,保证所有防伪码的真实有效性.</a></h3>
+                                </li>
+                                <li>
+                                  <img src="images/s_2.png" alt="photo" />
+                                    <h3><a href="#" class="query-method">系统架设在阿里云服务器集群中,更安全,更高效的为您提供查询服务</a></h3>
+                                </li>
+                                <li>
+                                  <img src="images/s_3.png" alt="photo" />
+                                    <h3><a href="#"  class="query-method">提供技术领先的,方式多样化的系统查询服务</a></h3>
+                                </li>
+                            </ul>
+                        </div>     
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('.flexslider').carousel({
+                                    interval: 3000
+                                });
+                                $("#txt_code").focus(function () {
+                                    $('#txt_code').removeAttr("placeholder")
+                                    $("#txt_code").css("font-size", "16px");
+                                    $("#txt_code").css("font-weight", "bold");
+                                });
+                                $('#resultModal').on('show', function () {
+                                    $(this).css({
+                                        'margin-top': function () {
+                                            return -($(this).height() / 2);
+                                        }
+                                    });
+                                });
+                    
+                            });
+                        </script>
+                    </div>
+
+                    <div class="span3">
+                        <!--BEGIN: divider arrow-->
+                        <div class="title-divider">
+                            <div class="divider-arrow"></div>                                
+                            <h3 class="query-info">防伪查询提示</h3>       
+                        </div><!--END: divider arrow-->
+                        <p class="hidden-phone query-tip" style="margin-bottom: 1px;">
+                            1、刮开防伪标签涂层,获得一组防伪防伪编码<br />
+                            2、从左至右,从上至下,依次输入商品上的防伪编码<br />
+                            3、点击[码上查]按钮,验证所要查询防伪编码真伪<br />
+                            4、防伪查询结果说明
+                               <p class="query_result">结果一：编码有效,请放心购买</p>
+                               <p class="query_result">结果二：编码无效,请核实后重试</p>
+                               <p class="query_result">结果三：多次查询,请谨防假冒</p>
+
+						<hr />
+                        </p>
+				
+                    </div>
+
+                </div>
+                <!--BEGIN: latest work-->
+        </section>
+        <hr />
+        <div class="row features">
+            <div class="span3">
+                <img src="images/telquery.png" alt="photo" />
+                <h3 class="query-method">电话查询</h3>
+                <p class="query-tip">
+                    使用手机(或座机)拨打4006361315、4006826315查询号码,根据语音提示依次输入将要查询的防伪编码.
+                </p>
+            </div>
+            <div class="span3">
+                <img src="images/smsquery.png" alt="photo" />
+                <h3 class="query-method">短信查询</h3>
+                <p class="query-tip">
+					编缉短信内容400800#防伪编码发送至12114验证商品真伪.<br/>(由运营商收取每条0.1元/条信息费)
+                </p>
+            </div>
+            <div class="span3">
+                <img src="images/qrquery.png" alt="photo" />
+                <h3 class="query-method">二维码查询</h3>
+                <p class="query-tip">
+					使用智能手机中的扫描二维码APP应用程序扫描标签标识上的二维码验证商品真伪.<br/>(需开启数据网络或WiFi环境下)
+                </p>
+            </div>
+            <div class="span3">
+               <img src="images/weixinquery.png" alt="photo" />
+               <h3 class="query-method">微信查询</h3> 
+               <p class="query-tip">
+					点击微信中的添加好友,搜索公众号 ChaFangWei 添加为好友,然后直接回复防伪编码验证商品真伪
+                </p>
+            </div>
+        </div>
+		
+        <hr />
+    <div class="row-fluid show-grid">
+        <div class="span12 bottomtext">
+		    <p>
+			    CopyRight © 2014 中国商品信息验证中心<br/>苏ICP备11038931号
+		    </p>
 		</div>
-		<div class="item" style="background:#F5E4DC;">
-			<img src="__IMG__/slide2.png" alt="第二张">
-		</div>
-		<div class="item" style="background:#DE2A2D;">
-			<img src="__IMG__/slide3.png" alt="第三张">
-		</div>
-	</div>
-	<a href="#myCarousel" data-slide="prev" class="carousel-control left">
-		<span class="glyphicon glyphicon-chevron-left"></span>
-	</a>
-	<a href="#myCarousel" data-slide="next" class="carousel-control right">
-		<span class="glyphicon glyphicon-chevron-right"></span>
-	</a>
+    </div>
+
+
+    </div>
+</section>
+<div class="service_box">
+  <ul class="tab_nav">
+    <li><a href="#"><i class="icon icon_1"></i></a></li>
+    <li><a href="#"><i class="icon icon_3"></i></a></li>
+  </ul>
+  <div class="tab_content">
+    <div class="tab_plan">
+     
+      
+
+
+      <p class="mt10">
+	  <b>投诉举报</b><br />
+      4008462315<br />
+      </p>
+      <p class="mt10">
+	  <b>服务时间</b><br />
+        8:00-22:00<br />
+      </p>
+    </div>
+    <div class="tab_plan" style="display: none;"><img src="images/weixin.jpg" alt="中国产品质量云追溯平台官方微信" width="130" height="130" />
+      <p>扫码关注公众号查询</p>
+    </div>
+  </div>
 </div>
 
-<div class="tab1">
-	<div class="container">
-		<div style="min-height: 300px;">
-			<form class="well form-search inputcode_back">
-				<input type="text" id="txt_code" class="input-medium search-query inputcode"  maxlength="24" placeholder="请输入16位防伪码">
-				<button type="button" class="btn btn-large btn-primary " style="font-family:'Microsoft Yahei'" onclick="cn_querycode()"><i class="icon-search icon-white"></i>码上查</button>
-			</form>
-			<div class="detail">
 
 
-			</div>
-		</div>
-	</div>
-</div>
-<style>
-	.inputcode{
-		width: 300px;
-		border: 1px solid #ddd;
-		height: 35px;
-		border-radius: 5px;
-		padding-left: 10px;
-		font-size: 14px;
-		font-weight: 500;
-	}
-</style>
+
+
+<script type="text/javascript">
+    $(".service_box .tab_nav li").hover(function () {
+        var i = $(this).index();
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".service_box .tab_plan:eq(" + i + ")").show().siblings().hide();
+    });
+    $(function () {
+        var t;
+        $(".service_box").hover(function () {
+            $(".service_box").animate({ right: 0 }, 300)
+            clearTimeout(t);
+        }, function () {
+            t = setTimeout(function (e) {
+                $(".service_box").animate({ right: "-146px" }, 300);
+                $(".service_box").find(".tab_nav li").removeClass("active");
+            }, 1000);
+        });
+    });
+    var isTransition = true;
+    $(".m_logo").hover(function () {
+        var r = 0;
+        if (isTransition) {
+            animateTime = setInterval(function () {
+                if (r >= 153) {
+                    clearInterval(animateTime);
+                    isTransition = true;
+                } else {
+                    isTransition = false;
+                    r++;
+                    $(".m_logo a").attr("style", "-webkit-mask:-webkit-gradient(radial, 45 25, " + r + ", 45 25, " + (r + 15) + ", from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));")
+                };
+            }, 5);
+        }
+    }, function () {
+        return;
+    });
+
+</script> 
+<script type="text/javascript">
+$("# diaoyong").load('http://china-12365.com/Index.aspx # diaoyong');
+
+</script> 
+<!--[if lt IE 7]>
+<script type="text/javascript">
+	window.onscroll = function(){
+		doc_scroll();
+	};
+	var doc_scroll = function(){
+		var height = document.documentElement.clientHeight - 90 ;
+		var scroll_top = $(document).scrollTop() ;
+		$(".service_box").css({
+			"top" : height + scroll_top - 74
+		});
+	};
+	doc_scroll();
+</script> 
+<![endif]-->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
 {/block}
 
 {block name="script"}
