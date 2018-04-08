@@ -13,6 +13,7 @@ use app\common\controller\Admin;
 class Code extends Admin {
     public function _initialize() {
         parent::_initialize();
+        $this->getContentMenu();
     }
 
 	public function index() {
